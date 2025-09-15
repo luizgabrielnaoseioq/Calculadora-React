@@ -215,6 +215,16 @@
         const { updateHistory } = React.useContext(CalculatorContext);
 
         function doOperation(input) {
+          const operator = ["+", "-", "*", "/"];
+
+          const ultimo = [operator.length - 1];
+
+          if (operator.includes(ultimo)) {
+            setOperation(operation.slice(0, -1) + input);
+          } else {
+            setOperation(operation + input);
+          }
+
           if (input === "C") {
             setOperation("");
             setResult("");
@@ -304,9 +314,12 @@
               Histórico de Operações
             </Text>
 
-            <button onClick={clearHistory}
-            className='text-sm text-red-400 hover:text-red-600 transition cursor-pointer'
-            >Limpar Historico</button>
+            <button
+              onClick={clearHistory}
+              className="text-sm text-red-400 hover:text-red-600 transition cursor-pointer"
+            >
+              Limpar Historico
+            </button>
 
             {history.length > 0 ? (
               <ul className="flex flex-col gap-3 ">
