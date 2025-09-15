@@ -104,7 +104,7 @@
           <div
             className={`
             bg-(--background) shadow-(--shadow)
-            rounded-2xl
+            rounded-2xl w-[366] h-[554]
             ${className ? className : ""}
           `}
           >
@@ -156,7 +156,6 @@
         }, []);
 
         function updateHistory(operation, parsedResult) {
-          setHistory((prev) => [...prev, `${operation}=${parsedResult}`]);
           setHistory((prev) => {
             const updatedHistory = [...prev, `${operation}=${parsedResult}`];
 
@@ -293,13 +292,13 @@
         const { history } = React.useContext(CalculatorContext);
 
         return (
-          <Card className="w-full py-10 px-8">
-            <Text as="h1" variant="heading" className="mb-4">
+          <Card className="w-full py-10 px-8 max-h-[560px] overflow-y-auto">
+            <Text as="h1" variant="heading" className="mb-4 overflow-auto">
               Histórico de Operações
             </Text>
 
             {history.length > 0 ? (
-              <ul className="flex flex-col gap-3">
+              <ul className="flex flex-col gap-3 ">
                 {history.map((value, index) => (
                   <Text key={`item-${index}`} as="li">
                     {value}
