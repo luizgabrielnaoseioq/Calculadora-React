@@ -215,15 +215,8 @@
         const { updateHistory } = React.useContext(CalculatorContext);
 
         function doOperation(input) {
-          const operator = ["+", "-", "*", "/"];
-
-          const ultimo = [operator.length - 1];
-
-          if (operator.includes(ultimo)) {
-            setOperation(operation.slice(0, -1) + input);
-          } else {
-            setOperation(operation + input);
-          }
+          const operators = ["+", "-", "*", "/"];
+          const lastChar = operation.slice(-1);
 
           if (input === "C") {
             setOperation("");
@@ -232,34 +225,54 @@
           }
 
           if (input === "CE") {
-            setResult("");
             setOperation(operation.slice(0, -1));
             return;
           }
 
           if (input === "=") {
-            const operationResult = eval(operation.replace(/,/g, "."));
-            const parsedResult = operationResult
-              .toString()
-              ?.replace(/\./g, ",");
-            setResult(parsedResult);
-            updateHistory(operation, parsedResult);
+            try {
+              const operationResult = eval(operation.replace(/,/g, "."));
+              const parsedResult = operationResult
+                .toString()
+                .replace(/\./g, ",");
+              setResult(parsedResult);
+              updateHistory(operation, parsedResult);
+            } catch {
+              setResult("Erro");
+            }
+            return;
+          }
 
+          // Se for operador
+          if (operators.includes(input)) {
+            if (!operation) {
+              // só deixa começar com "-"
+              if (input === "-") setOperation("-");
+              return;
+            }
+
+            if (operators.includes(lastChar)) {
+              // substitui o operador anterior
+              setOperation(operation.slice(0, -1) + input);
+            } else {
+              // adiciona normalmente
+              setOperation(operation + input);
+            }
+            return;
+          }
+
+          if (input === "," && lastChar !== ",") {
+            setOperation(operation + input);
             return;
           }
 
           if (result) {
-            setOperation(isNaN(input) ? `${result}${input}` : input);
+            setOperation(input);
             setResult("");
             return;
           }
 
-          if (input === "," && !operation.endsWith(",")) {
-            setOperation(`${operation},`);
-            return;
-          }
-
-          setOperation(`${operation}${input}`);
+          setOperation(operation + input);
         }
 
         return {
