@@ -1,13 +1,22 @@
+import type { ReactNode } from "react";
+import { Calculator, Delete, History, PencilRuler } from "lucide-react";
+
 export type ButtonConfig = {
   input: string;
+  icon?: ReactNode;
   className?: string;
   variant?: "default" | "primary";
 };
 
 export const buttons: ButtonConfig[][] = [
   [
-    { input: "CE" },
-    { input: "C", className: "flex-1 h-16" },
+    { input: "history", icon: <History /> },
+    { input: "metric", icon: <PencilRuler /> },
+    { input: "cient", icon: <Calculator /> },
+  ],
+  [
+    { input: "C", className: "flex-1 h-16 text-red-400" },
+    { input: "cl", icon: <Delete /> },
     { input: "/", variant: "primary" },
   ],
   [

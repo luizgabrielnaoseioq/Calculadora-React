@@ -1,6 +1,6 @@
 import { CalculatorProvider } from "./context/CalculatorContext";
 import { Calculator } from "./components/Calculator/Calculator";
-import { OperationHistory } from "./components/History/OperationHistory";
+// import { OperationHistory } from "./components/History/OperationHistory";
 
 export default function App() {
   return (
@@ -10,14 +10,14 @@ export default function App() {
       font-(--font-sans)"
     >
       <main
-        className="py-30 px-4 sm:px-10
+        className="py-15 px-4 sm:px-10
           flex flex-col sm:flex-row
           items-center sm:items-stretch
           gap-2"
       >
         <CalculatorProvider>
           <Calculator />
-          <OperationHistory />
+          {/* <OperationHistory /> */}
         </CalculatorProvider>
       </main>
     </div>

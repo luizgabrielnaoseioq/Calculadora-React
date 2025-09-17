@@ -30,7 +30,7 @@ export function useCalculator(): UseCalculatorReturn {
       return;
     }
 
-    if (input === "CE") {
+    if (input === "cl") {
       setOperation((prev) => prev.slice(0, -1));
       return;
     }
@@ -38,12 +38,15 @@ export function useCalculator(): UseCalculatorReturn {
     if (input === "=") {
       try {
         const sanitized = operation.replace(/,/g, ".");
-        const operationResult = eval(sanitized);
-        const parsedResult = operationResult
-          .toFixed(2)
-          .toString()
-          .replace(/\./g, ",");
-        console.log(parsedResult);
+        let operationResult = eval(sanitized);
+        let result: number = operationResult;
+        if (operationResult.toString().includes(".")) {
+          const decimalCase = operationResult.toString().split(".")[1].length;
+          if (decimalCase > 2) {
+            result = parseFloat(operationResult.toFixed(2));
+          }
+        }
+        const parsedResult = result.toString().replace(".", ",");
         setResult(parsedResult);
         updateHistory(operation, parsedResult);
       } catch {

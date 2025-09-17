@@ -1,7 +1,7 @@
 import { Card } from "../ui/Card";
 import { CalculatorDisplay } from "./CalculatorDisplay";
 import { Button } from "../ui/Button";
-import { buttons } from "./buttons";
+import { buttons, type ButtonConfig } from "./buttons";
 import { useCalculator } from "../../hooks/useCalculator";
 
 export function Calculator() {
@@ -9,6 +9,17 @@ export function Calculator() {
 
   function handleInputClick(input: string) {
     doOperation(input);
+  }
+
+  function testeIcon(props: ButtonConfig) {
+    switch (props.input) {
+      case "cl":
+        return props.icon;
+      case "history":
+        return props.icon;
+      default:
+        return props.input;
+    }
   }
 
   return (
@@ -25,7 +36,7 @@ export function Calculator() {
                 variant={button.variant}
                 onClick={() => handleInputClick(button.input)}
               >
-                {button.input}
+                {testeIcon(button)}
               </Button>
             ))}
           </div>
