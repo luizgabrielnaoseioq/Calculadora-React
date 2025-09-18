@@ -40,10 +40,6 @@ export function Calculator() {
     return input;
   }
 
-  console.log("Aqui jas operation: ", operation);
-  console.log("Aqui jas result: ", result);
-  console.log("Aqui jas doOperation: ", doOperation);
-
   return (
     <>
       <Card className="flex flex-col gap-[1.625rem] w-[22.25rem] pt-14 px-8 pb-8">
