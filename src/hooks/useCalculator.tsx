@@ -12,6 +12,9 @@ export function useCalculator(): UseCalculatorReturn {
   const [result, setResult] = useState("");
   const ctx = useContext(CalculatorContext);
 
+  console.log("Aqui jas operation do useCalculator: ", operation);
+  console.log("Aqui jas result do useCalculator: ", result);
+
   if (!ctx) {
     throw new Error(
       "useCalculator deve ser usado dentro do CalculatorProvider"
@@ -46,7 +49,10 @@ export function useCalculator(): UseCalculatorReturn {
             result = parseFloat(operationResult.toFixed(2));
           }
         }
-        const parsedResult = result.toString().replace(".", ",");
+
+        const parsedResult = result.toLocaleString("pt-br").toString();
+        console.log(parsedResult);
+
         setResult(parsedResult);
         updateHistory(operation, parsedResult);
       } catch {

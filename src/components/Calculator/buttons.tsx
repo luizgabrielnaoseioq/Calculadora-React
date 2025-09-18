@@ -10,9 +10,21 @@ export type ButtonConfig = {
 
 export const buttons: ButtonConfig[][] = [
   [
-    { input: "history", icon: <History /> },
-    { input: "metric", icon: <PencilRuler /> },
-    { input: "cient", icon: <Calculator /> },
+    {
+      input: "history",
+      icon: <History />,
+      className: "bg-none",
+    },
+    {
+      input: "metric",
+      icon: <PencilRuler />,
+      className: "bg-none",
+    },
+    {
+      input: "cient",
+      icon: <Calculator />,
+      className: "bg-none",
+    },
   ],
   [
     { input: "C", className: "flex-1 h-16 text-red-400" },

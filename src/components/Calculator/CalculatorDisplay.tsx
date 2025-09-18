@@ -16,7 +16,7 @@ export function CalculatorDisplay({ operation, result }: Props) {
         {result && operation}
       </Text>
       <div className="flex items-center justify-between h-9">
-        <Text variant="muted">=</Text>
+        <Text variant="muted"></Text>
         <Text variant="blast">{result || operation}</Text>
       </div>
     </div>

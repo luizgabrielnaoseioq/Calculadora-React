@@ -10,7 +10,7 @@ export default function App() {
       font-(--font-sans)"
     >
       <main
-        className="py-15 px-4 sm:px-10
+        className="py-4 px-4 sm:px-10
           flex flex-col sm:flex-row
           items-center sm:items-stretch
           gap-2"
