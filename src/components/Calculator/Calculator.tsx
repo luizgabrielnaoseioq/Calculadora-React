@@ -5,6 +5,7 @@ import { buttons, type ButtonConfig } from "./buttons";
 import { useCalculator } from "../../hooks/useCalculator";
 import { useState } from "react";
 import { OperationHistory } from "../History/OperationHistory";
+import { TogleTheme } from "./ToogleTheme";
 
 export function Calculator() {
   const { operation, result, doOperation } = useCalculator();
@@ -49,6 +50,7 @@ export function Calculator() {
         />
 
         <div className="flex flex-col gap-3">
+          <TogleTheme />
           {buttons.map((row, rowIndex) => (
             <div key={`row-${rowIndex}`} className="flex gap-3">
               {row.map((button) => (
